@@ -9,6 +9,27 @@ export async function load({ locals }) {
     redirect(302, '/');
   }
   const profileForm = await superValidate(zod(profileSchema));
+  const user = await prisma.users.findUnique({
+    where: { username: locals.user.username },
+  })
+  
 
-  return { user: locals.user, profileForm: profileForm};
+  return { user: user, profileForm: profileForm};
 }
+
+export const actions = {
+  default: async ({ request }) => {
+    const form = await superValidate(request, zod(schema));
+    console.log(form);
+
+    if (!form.valid) {
+      // Again, return { form } and things will just work.
+      return fail(400, { form });
+    }
+
+
+
+    return message(form, 'Form posted successfully!');
+  }
+};
+

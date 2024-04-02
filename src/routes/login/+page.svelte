@@ -96,7 +96,7 @@
                     </div>
                 </form>
             {:else}
-            <h1 class="text-3xl font-bold">Register</h1>
+            <h1 class="text-3xl font-bold my-8">Register</h1>
                 <form
                     class="w-full max-w-sm"
                     method="POST"
@@ -188,7 +188,7 @@
                                 {/if}
                             </label>
                         </div>
-                        <div class="flex justify-center mt-4 space-x-12">
+                        <div class="flex justify-center my-8 space-x-12">
                             <button
                                 class="btn w-24"
                                 on:click|preventDefault={() =>

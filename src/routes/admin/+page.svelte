@@ -33,102 +33,40 @@
 </script>
 
 <main>
-    <table class="table table-zebra m-8 w-[calc(100vw-4rem)] bg-white divide-x">
-        <thead>
-            <tr>
-                <th>
-                    <label>
-                        <input
-                            type="checkbox"
-                            class="checkbox"
-                            bind:group={deleteQuestions}
-                            value={questions}
-                        />
-                    </label>
-                </th>
-                <th>ID</th>
-                <th>Question</th>
-                <th>Answers</th>
-                <th>Correct Answer</th>
-                <th>Category ID</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        {#each questions as question, index}
-            <tbody class="w-[calc(100vw-4rem)]">
-                <tr>
-                    {#if editMode[index]}
-                        <form action="?/saveEdit" method="POST">
-                            <th>
-                                <label class="m-0">
-                                    <input
-                                        type="checkbox"
-                                        class="checkbox"
-                                        bind:group={deleteQuestions}
-                                        value={question.question_id}
-                                    />
-                                </label>
-                            </th>
-                            <td>
-                                <div class="font-bold">
-                                    {question.question_id}
-                                </div>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.question}
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.answer1}
-                                />,
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.answer2}
-                                />,
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.answer3}
-                                />,
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.answer4}
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    class="input input-primary"
-                                    bind:value={question.correctAnswer}
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    class="input input-primary"
-                                    bind:value={question.category_id}
-                                />
-                            </td>
-                            <td>
-                                <button
-                                    class="btn btn-link"
-                                    type="submit"
-                                    on:click={() =>
-                                        (editMode[index] = !editMode[index])}
-                                    >Save</button
-                                >
-                            </td>
-                        </form>
-                    {:else}
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+            <!-- Page content here -->
+            <label
+                for="my-drawer-2"
+                class="btn btn-primary drawer-button lg:hidden"
+                >Open drawer</label
+            >
+            <table class="table table-zebra border-solid bg-white">
+                <thead>
+                    <tr>
                         <th>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    class="checkbox"
+                                    bind:group={deleteQuestions}
+                                    value={questions}
+                                />
+                            </label>
+                        </th>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Answers</th>
+                        <th>Correct Answer</th>
+                        <th>Category ID</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                {#each questions as question, index}
+                    <tbody>
+                        <tr>
+                            <td>
                             <label class="m-0">
                                 <input
                                     type="checkbox"
@@ -137,61 +75,169 @@
                                     value={question.question_id}
                                 />
                             </label>
+                        </td>
+                            <td>
+                                <div class="font-bold">
+                                    {question.question_id}
+                                </div>
+                            </td>
+                            <td>
+                                {question.question}
+                            </td>
+                            <td>
+                                {question.answer1}, {question.answer2}, {question.answer3},
+                                {question.answer4}
+                            </td>
+                            <td>
+                                {question.correctAnswer}
+                            </td>
+                            <td>
+                                {question.category_id}
+                            </td>
+                            <td>
+                                <button
+                                    class="btn btn-link"
+                                    onclick="my_modal_1.showModal()"
+                                    >Edit</button
+                                >
+                                <dialog id="my_modal_1" class="modal">
+                                    <div class="modal-box">
+                                        <h3 class="font-bold text-lg">
+                                            Edit Question
+                                        </h3>
+
+                                        <form action="?/saveEdit" method="POST">
+                                            <div class="flex flex-col items-center justify-center">
+
+                                            <label for="question_id">Question ID</label>
+                                            <div name="question_id" class="font-bold">
+                                                {question.question_id}
+                                            </div>
+
+                                            <label for="question"
+                                                >Question</label
+                                            >
+                                            <input
+                                                name="question"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.question}
+                                            />
+                                            <label for="answer1"
+                                                >Answer1</label
+                                            >
+                                            <input
+                                                name="answer1"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.answer1}
+                                            />
+                                            <label for="answer2"
+                                            >Answer2</label
+                                        >
+                                            <input
+                                                name="answer2"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.answer2}
+                                            />
+                                            <label for="answer3"
+                                            >Answer3</label
+                                        >
+                                            <input
+                                                name="answer3"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.answer3}
+                                            />
+                                            <label for="answer4"
+                                            >Answer4</label
+                                        >
+                                            <input
+                                                name="answer4"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.answer4}
+                                            />
+                                            <label for="correctAnswer"
+                                            >Correct Answer</label
+                                        >
+                                            <input
+                                                name="correctAnswer"
+                                                type="text"
+                                                class="input input-primary"
+                                                bind:value={question.correctAnswer}
+                                            />
+                                            <label for="category_id"
+                                                >Category ID</label
+                                            >
+                                            <input
+                                                name="category_id"
+                                                type="number"
+                                                class="input input-primary"
+                                                bind:value={question.category_id}
+                                            />
+                                        </div>
+                                        </form>
+                                        <div class="modal-action">
+                                            <form method="dialog">
+                                                <!-- if there is a button in form, it will close the modal -->
+                                                <button class="btn">Save</button
+                                                >
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
+                            </td>
+                        </tr>
+                    </tbody>
+                {/each}
+                <!-- foot -->
+                <tfoot>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox" class="checkbox" />
+                            </label>
                         </th>
-                        <td>
-                            <div class="font-bold">
-                                {question.question_id}
-                            </div>
-                        </td>
-                        <td>
-                            {question.question}
-                        </td>
-                        <td>
-                            {question.answer1}, {question.answer2}, {question.answer3},
-                            {question.answer4}
-                        </td>
-                        <td>
-                            {question.correctAnswer}
-                        </td>
-                        <td>
-                            {question.category_id}
-                        </td>
-                        <td>
-                            <button
-                                class="btn btn-link"
-                                on:click={() =>
-                                    (editMode[index] = !editMode[index])}
-                                >Edit</button
-                            >
-                        </td>
-                    {/if}
-                </tr>
-            </tbody>
-        {/each}
-        <!-- foot -->
-        <tfoot>
-            <tr>
-                <th>
-                    <label>
-                        <input type="checkbox" class="checkbox" />
-                    </label>
-                </th>
-                <th>ID</th>
-                <th>Question</th>
-                <th>Answers</th>
-                <th>Correct Answer</th>
-                <th>Category ID</th>
-                <th>Edit</th>
-            </tr>
-        </tfoot>
-    </table>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Answers</th>
+                        <th>Correct Answer</th>
+                        <th>Category ID</th>
+                        <th>Edit</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="drawer-side">
+            <label
+                for="my-drawer-2"
+                aria-label="close sidebar"
+                class="drawer-overlay"
+            ></label>
+            <ul
+                class="menu p-4 w-48 h-full bg-gray-100 text-base-content mr-8 rounded-lg"
+            >
+                <!-- Sidebar content here -->
+                <li>
+                    <a
+                        class="bg-primary hover:bg-blue-600 text-white"
+                        href="/admin">Questions</a
+                    >
+                </li>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+            </ul>
+        </div>
+    </div>
     {#if deleteQuestions.length >= 1}
         <div class="fixed bottom-0 w-full">
             <button
                 onclick="deleteModal.showModal()"
                 class="float-right btn btn-primary text-white m-4"
             >
-                Delete {deleteQuestions.length} {deleteQuestions.length === 1
+                Delete {deleteQuestions.length}
+                {deleteQuestions.length === 1
                     ? "Question"
                     : "Questions"}</button
             >
@@ -216,13 +262,17 @@
                             action="?/deleteQuestions&ids={deleteQuestions}"
                             method="POST"
                         >
-                            <button type="submit" class="btn btn-primary text-white">Confirm</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary text-white"
+                                >Confirm</button
+                            >
                         </form>
                     </div>
                 </div>
             </dialog>
         </div>
-        {:else}
+    {:else}
         <div class="fixed bottom-0 w-full">
             <button
                 onclick="addModal.showModal()"
@@ -233,12 +283,12 @@
             >
             <dialog id="addModal" class="modal">
                 <div class="modal-box">
-                    <h3 class="font-bold text-lg">
-                        Add a Question
-                    </h3>
+                    <h3 class="font-bold text-lg">Add a Question</h3>
                     <form action="?/addQuestion" method="POST">
                         <div class="flex flex-col items-center justify-center">
-                            <label for="question" class="label font-bold">Question</label>
+                            <label for="question" class="label font-bold"
+                                >Question</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -254,7 +304,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="answer1" class="label font-bold">Answer 1</label>
+                            <label for="answer1" class="label font-bold"
+                                >Answer 1</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -270,7 +322,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="answer2" class="label font-bold">Answer 2</label>
+                            <label for="answer2" class="label font-bold"
+                                >Answer 2</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -286,7 +340,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="answer3" class="label font-bold">Answer 3</label>
+                            <label for="answer3" class="label font-bold"
+                                >Answer 3</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -302,7 +358,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="answer4" class="label font-bold">Answer 4</label>
+                            <label for="answer4" class="label font-bold"
+                                >Answer 4</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -318,7 +376,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="correctAnswer" class="label font-bold">Correct Answer</label>
+                            <label for="correctAnswer" class="label font-bold"
+                                >Correct Answer</label
+                            >
                             <input
                                 type="text"
                                 class="input input-primary"
@@ -334,7 +394,9 @@
                                     >
                                 {/if}
                             </label>
-                            <label for="category_id" class="label font-bold">Category Id</label>
+                            <label for="category_id" class="label font-bold"
+                                >Category Id</label
+                            >
                             <input
                                 type="number"
                                 class="input input-primary"
@@ -353,13 +415,16 @@
                                 {/if}
                             </label>
                         </div>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn">Cancel</button>
-                        </form>
-                            <button type="submit" class="btn btn-primary text-white">Add</button>
-                    </div>
-                </form>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <button class="btn">Cancel</button>
+                            </form>
+                            <button
+                                type="submit"
+                                class="btn btn-primary text-white">Add</button
+                            >
+                        </div>
+                    </form>
                 </div>
             </dialog>
         </div>

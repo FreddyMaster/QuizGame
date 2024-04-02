@@ -1,6 +1,6 @@
 // +page.js
 import { prisma } from '$lib/server/prisma';
-import { selectedCategories } from '$/lib/stores';
+import { selectedCategories } from '$lib/stores.js';
 import { redirect } from '@sveltejs/kit';
 
 export async function load() {
