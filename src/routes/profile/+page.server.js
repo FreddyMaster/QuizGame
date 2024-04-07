@@ -14,7 +14,7 @@ export async function load({ locals }) {
   })
   
 
-  return { user: user, profileForm: profileForm};
+  return { user, profileForm};
 }
 
 export const actions = {

@@ -4,8 +4,6 @@
     import Icon from "@iconify/svelte";
     export let data;
 
-    console.log(data);
-
     const { form, errors, enhance } = superForm(data.profileForm);
     $form.username = data.user.username;
     $form.email = data.user.email;
@@ -164,8 +162,16 @@
             </div>
         </div>
         <button
-            class="btn btn-primary ml-8"
+            class="btn btn-primary btn-block max-w-sm text-white ml-8 my-4"
             on:click={() => (editmode = !editmode)}>Edit</button
         >
     {/if}
+    {#if data.user.user_type == "user"}
+    <form action="?/requestAdmin" method="POST">
+        <button class="btn btn-primary btn-block max-w-sm text-white ml-8" type="submit">Request Admin</button>
+    </form>
+    {:else}
+    <p>fail</p>
+    {/if}
+
 </main>

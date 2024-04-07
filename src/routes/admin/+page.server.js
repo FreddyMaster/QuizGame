@@ -14,7 +14,7 @@ export async function load( {locals}) {
     const categories = await prisma.categories.findMany();
     const editQuestionForm = await superValidate(zod(questionSchema));
     const addQuestionForm = await superValidate(zod(questionSchema));
-
+    
     return {
       questions, categories, editQuestionForm, addQuestionForm
     };
@@ -46,15 +46,6 @@ export const actions = {
     catch (error) {
       console.error("Error fetching Ids:", error);
     }
-  },
-  saveEdit: async ({ request }) => {
-    const editForm = await superValidate(request, zod(questionSchema));
-
-    if (!editForm.valid) {
-      return fail(400, { editForm });
-    }
-
-    console.log(editForm)
   },
   addQuestion: async ({ request }) => {
     const addQuestionForm = await superValidate(request, zod(questionSchema));

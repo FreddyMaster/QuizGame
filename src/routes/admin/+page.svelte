@@ -1,6 +1,6 @@
 <script>
     import "$lib/app.css";
-    import SuperDebug, { superForm } from "sveltekit-superforms";
+    import { superForm } from "sveltekit-superforms";
     import { zodClient } from "sveltekit-superforms/adapters";
     import { questionSchema } from "$lib/schemas/zodschemas.js";
     export let data;
@@ -15,21 +15,8 @@
         validationMethod: "submit",
     });
 
-    const {
-        form: editQuestionForm,
-        errors: editQuestionErrors,
-        enhance: editQuestionEnhance,
-    } = superForm(data.editQuestionForm, {
-        resetForm: true,
-        validators: zodClient(questionSchema),
-        validationMethod: "submit",
-    });
-
-    let { questions } = data;
-    let deleteQuestions = [];
-    let editMode = questions.map(() => false);
-
     $: ({ questions } = data);
+    let deleteQuestions = [];
 </script>
 
 <main>
@@ -63,7 +50,7 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-                {#each questions as question, index}
+                {#each questions as question}
                     <tbody>
                         <tr>
                             <td>
@@ -95,99 +82,13 @@
                                 {question.category_id}
                             </td>
                             <td>
-                                <button
-                                    class="btn btn-link"
-                                    onclick="my_modal_1.showModal()"
-                                    >Edit</button
-                                >
-                                <dialog id="my_modal_1" class="modal">
-                                    <div class="modal-box">
-                                        <h3 class="font-bold text-lg">
-                                            Edit Question
-                                        </h3>
-
-                                        <form action="?/saveEdit" method="POST">
-                                            <div class="flex flex-col items-center justify-center">
-
-                                            <label for="question_id">Question ID</label>
-                                            <div name="question_id" class="font-bold">
-                                                {question.question_id}
-                                            </div>
-
-                                            <label for="question"
-                                                >Question</label
-                                            >
-                                            <input
-                                                name="question"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.question}
-                                            />
-                                            <label for="answer1"
-                                                >Answer1</label
-                                            >
-                                            <input
-                                                name="answer1"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.answer1}
-                                            />
-                                            <label for="answer2"
-                                            >Answer2</label
-                                        >
-                                            <input
-                                                name="answer2"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.answer2}
-                                            />
-                                            <label for="answer3"
-                                            >Answer3</label
-                                        >
-                                            <input
-                                                name="answer3"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.answer3}
-                                            />
-                                            <label for="answer4"
-                                            >Answer4</label
-                                        >
-                                            <input
-                                                name="answer4"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.answer4}
-                                            />
-                                            <label for="correctAnswer"
-                                            >Correct Answer</label
-                                        >
-                                            <input
-                                                name="correctAnswer"
-                                                type="text"
-                                                class="input input-primary"
-                                                bind:value={question.correctAnswer}
-                                            />
-                                            <label for="category_id"
-                                                >Category ID</label
-                                            >
-                                            <input
-                                                name="category_id"
-                                                type="number"
-                                                class="input input-primary"
-                                                bind:value={question.category_id}
-                                            />
-                                        </div>
-                                        </form>
-                                        <div class="modal-action">
-                                            <form method="dialog">
-                                                <!-- if there is a button in form, it will close the modal -->
-                                                <button class="btn">Save</button
-                                                >
-                                            </form>
-                                        </div>
-                                    </div>
-                                </dialog>
+                                <a href="/admin/{question.question_id}">
+                                    <button
+                                        class="float-right btn btn-primary text-white m-4"
+                                    >
+                                        Edit</button
+                                    >
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -226,6 +127,7 @@
                         href="/admin">Questions</a
                     >
                 </li>
+                <li><a href="/requests">Admin Requests</a></li>
                 <li><a href="/leaderboard">Leaderboard</a></li>
             </ul>
         </div>
