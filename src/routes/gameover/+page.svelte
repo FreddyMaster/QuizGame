@@ -1,49 +1,41 @@
 <script>
     // @ts-nocheck
-    import '$lib/styles.css';
-    import { score } from '$lib/stores.js';
+    import "$lib/app.css";
+    import { score } from "$lib/stores.js";
+    import { onMount } from "svelte";
+
+    let points = 0;
+
+    onMount(() => {
+    setInterval(() => {
+      if (points < $score) {
+        points+=1;
+      }
+    }, 500);
+  });
 </script>
 
 <main>
     <!-- Game Interface Section -->
-    <div class="game-over">
-        <h2>Game Over!</h2>
-        <p>You got {$score} {$score === 1 ? "question" : "questions"} right.</p>
+    <div class="text-center">
+        <h1 class="text-black text-6xl">Game Over!</h1>
+        <h3 class="text-lg text-black">You got {#if points === $score}<strong class="text-red-600"> {points} </strong>{:else} <span class="text-red-600">{points}</span> {/if} {$score === 1 ? "question" : "questions"} right.</h3>
         <a href="/play">
-            <button>Try Again</button>
+            <button class="btn bg-blue-500 text-white border-4 border-black">Try Again</button>
+            
+        </a>
+        <a href="/play">
+            <button class="btn bg-green-800 text-white border-4 border-black">Submit Score?</button>
         </a>
     </div>
+    <style>
+        h1 {
+            font-family: "Permanent Marker", cursive;
+            padding-bottom: 75px;
+        }
+        button{
+            font-family: "Permanent Marker", cursive;
+
+        }
+    </style>
 </main>
-
-<style>
-    :root {
-        background-color: var(--background-color);
-        text-align: center;
-    }
-
-    h2 {
-        font-family: "Workbench", sans-serif;
-        color: var(--button-text-color);
-    }
-
-    button {
-        background: var(--primary-color);
-        color: var(--button-text-color);
-        border: 0.25em solid var(--border-color);
-        border-radius: 10px;
-        font-size: larger;
-        padding: 1em;
-        cursor: pointer;
-        transition: background 0.3s ease;
-        text-align: center;
-    }
-
-    button:hover {
-        background: var(--hover-color);
-    }
-
-    button:disabled {
-        background: var(--disabled-color);
-        cursor: not-allowed;
-    }
-</style>
