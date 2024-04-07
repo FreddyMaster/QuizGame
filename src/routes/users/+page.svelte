@@ -71,13 +71,25 @@
 								{user.user_type}
 							</td>
 							<td>
-								<a href="/admin/{user.user_id}">
+								{#if user.user_type == "user"}
+								<form action="?/giveAdmin&id={user.user_id}" method="POST">
 									<button
 										class="float-right btn btn-primary text-white m-4"
+										type="submit"
 									>
 										Give Admin</button
 									>
-								</a>
+								</form>
+								{:else}
+								<form action="?/revokeAdmin&id={user.user_id}" method="POST">
+									<button
+										class="float-right btn btn-primary text-white m-4"
+										type="submit"
+									>
+										Revoke Admin</button
+									>
+								</form>
+								{/if}
 							</td>
 						</tr>
 					</tbody>
@@ -111,12 +123,15 @@
 			>
 				<!-- Sidebar content here -->
 				<li>
-					<a
-						href="/admin">Questions</a
-					>
+					<a href="/admin">Questions</a>
 				</li>
 				<li><a href="/leaderboard">Leaderboard</a></li>
-				<li><a class="bg-primary hover:bg-blue-600 text-white" href="/users">Users</a></li>
+				<li>
+					<a
+						class="bg-primary hover:bg-blue-600 text-white"
+						href="/users">Users</a
+					>
+				</li>
 			</ul>
 		</div>
 	</div>
