@@ -1,7 +1,9 @@
 import { redirect } from '@sveltejs/kit'
 
 export const load = async () => {
-  redirect(302, '/');
+  // we only use this endpoint for the api
+  // and don't need to see the page
+  redirect(302, '/')
 }
 
 export const actions = {
@@ -11,6 +13,8 @@ export const actions = {
       path: '/',
       expires: new Date(0),
     })
-    redirect(302, '/');
+
+    // redirect the user
+    redirect(302, '/login')
   },
 }

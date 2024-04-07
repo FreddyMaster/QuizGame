@@ -1,7 +1,7 @@
 <script>
-  import "$lib/styles.css";
-  import Icon from "@iconify/svelte";
-  import { selectedCategories } from "$lib/stores.js";
+  import '$lib/styles.css';
+  import Icon from '@iconify/svelte';
+  import { selectedCategories } from '$lib/stores.js';
 
   export let data;
   const { categories } = data;
@@ -64,7 +64,7 @@
 <main>
   <!-- Category Selection -->
   <div class="parent-container">
-    <h1 class="categories-label">Categories</h1>
+    <h1 class="categories-label text-3xl">Categories</h1>
     <div class="categories-grid">
       {#each categories as category}
         <button
@@ -103,12 +103,15 @@
 <style>
   :root {
     background: var(--background-color);
+    
   }
 
   .parent-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: calc(75vh);
   }
 
   .categories-label {
@@ -184,7 +187,8 @@
     width: 10em;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 3em;
+    margin-top: 2em;
+    margin-bottom: 5em;
     color: var(--button-text-color);
   }
 

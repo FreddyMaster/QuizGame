@@ -1,7 +1,13 @@
 // +page.js
 import { prisma } from '$lib/server/prisma';
+import { selectedCategories } from '$lib/stores.js';
+import { redirect } from '@sveltejs/kit';
 
 export async function load() {
+  if (selectedCategories == []) {
+    redirect(305, '/');
+  }
+
   try {
     const questions = await prisma.questions.findMany();
 
