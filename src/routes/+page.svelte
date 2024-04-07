@@ -3,6 +3,7 @@
   import Icon from "@iconify/svelte";
   import { selectedCategories, categoriesIcons, colors } from "$lib/stores.js";
 
+
   export let data;
   const { categories } = data;
   selectedCategories.set(categories);
@@ -94,8 +95,6 @@
           <button class="btn btn-primary btn-wide text-white">Start Game </button>
         </a>
       </div>
-
-
     </div>
   </div>
   <style>

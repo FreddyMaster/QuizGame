@@ -2,9 +2,6 @@
     import "$lib/app.css";
     import { score } from "$lib/stores.js";
     import { selectedCategories } from "$lib/stores.js"
-
-
-
 </script>
 <main>
     <h1 class="text-lg text-black text-center">Leaderboard</h1>
@@ -30,3 +27,4 @@
         }
     </style>
 </main>
+</script>

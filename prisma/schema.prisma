@@ -40,7 +40,7 @@ model questions {
 
 model users {
   user_id     Int              @id @default(autoincrement())
-  username    String           @unique @db.VarChar(255)
+  username    String           @db.VarChar(255) @unique
   email       String           @unique(map: "email") @db.VarChar(255)
   password    String           @db.VarChar(255)
   highscore   Int?             @default(0)
