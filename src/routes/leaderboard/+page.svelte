@@ -89,12 +89,11 @@
 				<!-- Sidebar content here -->
 				<li>
 					<a
-						class="bg-primary hover:bg-blue-600 text-white"
 						href="/admin">Questions</a
 					>
 				</li>
 				<li><a href="/leaderboard">Leaderboard</a></li>
-				<li><a href="/users">Users</a></li>
+                <li><a class="bg-primary hover:bg-blue-600 text-white" href="/users">Users</a></li>
 			</ul>
 		</div>
 	</div>

@@ -127,8 +127,8 @@
                         href="/admin">Questions</a
                     >
                 </li>
-                <li><a href="/requests">Admin Requests</a></li>
                 <li><a href="/leaderboard">Leaderboard</a></li>
+                <li><a href="/users">Users</a></li>
             </ul>
         </div>
     </div>
