@@ -29,7 +29,7 @@
                 class="btn btn-primary drawer-button lg:hidden"
                 >Open drawer</label
             >
-            <table class="table table-zebra border-solid bg-white">
+            <table class="table table-zebra border-solid bg-white m-4">
                 <thead>
                     <tr>
                         <th>
@@ -82,7 +82,7 @@
                                 {question.category_id}
                             </td>
                             <td>
-                                <a href="/admin/{question.question_id}">
+                                <a href="/admin/questions/{question.question_id}">
                                     <button
                                         class="float-right btn btn-primary text-white m-4"
                                     >
@@ -118,17 +118,17 @@
                 class="drawer-overlay"
             ></label>
             <ul
-                class="menu p-4 w-48 h-full bg-gray-100 text-base-content mr-8 rounded-lg"
+                class="menu p-4 w-48 h-full bg-gray-100 text-base-content rounded-lg"
             >
                 <!-- Sidebar content here -->
                 <li>
                     <a
                         class="bg-primary hover:bg-blue-600 text-white"
-                        href="/admin">Questions</a
+                        href="/admin/questions">Questions</a
                     >
                 </li>
-                <li><a href="/leaderboard">Leaderboard</a></li>
-                <li><a href="/users">Users</a></li>
+                <li><a href="/admin/leaderboard">Leaderboard</a></li>
+                <li><a href="/admin/users">Users</a></li>
             </ul>
         </div>
     </div>

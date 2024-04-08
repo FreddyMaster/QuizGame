@@ -90,11 +90,11 @@
 				<li>
 					<a
 						class="bg-primary hover:bg-blue-600 text-white"
-						href="/admin">Questions</a
+						href="/admin/questions">Questions</a
 					>
 				</li>
-				<li><a href="/leaderboard">Leaderboard</a></li>
-				<li><a href="/users">Users</a></li>
+				<li><a href="/admin/leaderboard">Leaderboard</a></li>
+				<li><a href="/admin/users">Users</a></li>
 			</ul>
 		</div>
 	</div>
