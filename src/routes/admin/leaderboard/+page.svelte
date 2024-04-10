@@ -4,19 +4,28 @@
 
 	$: ({ scores } = data);
 	let deleteScores = [];
+	let searchInput = '';
+
+$: filteredScores = scores.filter(score => 
+	score.username.toLowerCase().includes(searchInput.toLowerCase())
+);
 </script>
 
 <main>
 	<div class="drawer lg:drawer-open">
 		<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-		<div class="drawer-content">
+		<div class="drawer-content mx-4">
 			<!-- Page content here -->
 			<label
 				for="my-drawer-2"
 				class="btn btn-primary drawer-button lg:hidden"
 				>Open drawer</label
 			>
-			<table class="table table-zebra border-solid bg-white m-4">
+			<label class="input input-bordered flex items-center my-4 max-w-xs float-right">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+				<input type="text" class="grow ml-4" placeholder="Search" bind:value={searchInput} />
+			</label>
+			<table class="table table-zebra border-solid bg-white">
 				<thead>
 					<tr>
 						<th>
@@ -37,7 +46,7 @@
 						<th>Categories</th>
 					</tr>
 				</thead>
-				{#each scores as score}
+				{#each filteredScores as score}
 					<tbody>
 						<tr>
 							<td>
@@ -98,7 +107,7 @@
 				class="drawer-overlay"
 			></label>
 			<ul
-				class="menu p-4 w-48 h-full bg-gray-100 text-base-content rounded-lg"
+				class="menu p-4 w-48 h-full bg-gray-100 text-base-content"
 			>
 				<!-- Sidebar content here -->
 				<li>

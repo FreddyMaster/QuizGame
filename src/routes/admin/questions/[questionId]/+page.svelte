@@ -84,7 +84,7 @@
 				class="drawer-overlay"
 			></label>
 			<ul
-				class="menu p-4 w-48 h-full bg-gray-100 text-base-content mr-8 rounded-lg"
+				class="menu p-4 w-48 h-full bg-gray-100 text-base-content mr-8"
 			>
 				<!-- Sidebar content here -->
 				<li>
