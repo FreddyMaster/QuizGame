@@ -7,7 +7,13 @@ export async function load( {locals}) {
       }
 
   try {
-    const scores = await prisma.leaderboard.findMany();
+    const scores = await prisma.leaderboard.findMany({
+      orderBy: [
+        {
+          score: 'desc',
+        },
+      ]
+  });
     
     return {
       scores
@@ -33,7 +39,7 @@ export const actions = {
     try {
       await prisma.leaderboard.deleteMany({
         where: {
-          rank: { in: ids },
+          leaderboard_id: { in: ids },
         },
       })
     }

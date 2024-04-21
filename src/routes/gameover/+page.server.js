@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import { prisma } from "$lib/server/prisma"
-import { error, fail, redirect } from "@sveltejs/kit"
+import { error, fail} from "@sveltejs/kit"
 
 export const load = async () => {
     const leaderboard = await prisma.leaderboard.findMany();
@@ -13,10 +13,11 @@ export const load = async () => {
     }
 }
 export const actions = {
-    submitScore: async ({ url, locals, request}) => {
-        const categories = url.searchParams.get("categories")
-        const scoreStr = url.searchParams.get("score")
-        const score = Number(scoreStr)
+    submitScore: async ({ url, locals}) => {
+        const categories = await prisma.categories.findMany();
+        let categoriesSelected = url.searchParams.get("categories").split(',')
+        const selectedIds = categoriesSelected;
+        const score = url.searchParams.get("score")
         let date = new Date().toJSON()
         try {
 			await prisma.leaderboard.create({
@@ -24,9 +25,9 @@ export const actions = {
 				data: {
                     user_id: 1,
                     username: locals.user.username,
-                    score: score,
+                    score: +score,
                     time: date,
-                    categories: categories,
+                    categories: categoriesSelected,
 				},
 			})
 		} catch (err) {

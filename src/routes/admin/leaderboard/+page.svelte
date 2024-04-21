@@ -3,9 +3,10 @@
 	export let data;
 
 	$: ({ scores } = data);
+	
 	let deleteScores = [];
 	let searchInput = '';
-
+	
 $: filteredScores = scores.filter(score => 
 	score.username.toLowerCase().includes(searchInput.toLowerCase())
 );
@@ -23,7 +24,7 @@ $: filteredScores = scores.filter(score =>
 			>
 			<label class="input input-bordered flex items-center my-4 max-w-xs float-right">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
-				<input type="text" class="grow ml-4" placeholder="Search" bind:value={searchInput} />
+				<input type="text" class="grow ml-4" placeholder="Search By Username" bind:value={searchInput} />
 			</label>
 			<table class="table table-zebra border-solid bg-white">
 				<thead>
@@ -46,7 +47,7 @@ $: filteredScores = scores.filter(score =>
 						<th>Categories</th>
 					</tr>
 				</thead>
-				{#each filteredScores as score}
+				{#each filteredScores as score, index}
 					<tbody>
 						<tr>
 							<td>
@@ -55,13 +56,13 @@ $: filteredScores = scores.filter(score =>
 										type="checkbox"
 										class="checkbox"
 										bind:group={deleteScores}
-										value={score.rank}
+										value={score.leaderboard_id}
 									/>
 								</label>
 							</td>
 							<td>
 								<div class="font-bold">
-									{score.rank}
+									{index+1}
 								</div>
 							</td>
 							<td>

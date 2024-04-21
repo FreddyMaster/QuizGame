@@ -1,7 +1,7 @@
 <script>
     // @ts-nocheck
     import "$lib/app.css";
-    import { score,selectedCategories } from "$lib/stores.js";
+    import { score, selectedCategories } from "$lib/stores.js";
     import { onMount } from "svelte";
     
     import { get } from 'svelte/store';
@@ -18,9 +18,8 @@
   });
   const value = get(score);
   let balue = get(selectedCategories);
-  const balueArray = [].concat(...balue.map(obj => obj.category));
+  const balueArray = [].concat(...balue.map(obj => obj.category_id));
   console.log(value," ", balueArray);
-
 
 </script>
 
