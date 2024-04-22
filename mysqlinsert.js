@@ -34,14 +34,14 @@ connection.connect(async (error) => {
     // Define the categories in the desired order
     const categoriesInOrder = [
       "Science",
-      "Society & Culture",
-      "Arts & Literature",
+      "Society_&_Culture",
+      "Arts_&_Literature",
       "Music",
-      "Sport & Leisure",
-      "Food & Drink",
+      "Sport_&_Leisure",
+      "Food_&_Drink",
       "Geography",
-      "General Knowledge",
-      "Film & TV",
+      "General_Knowledge",
+      "Film_&_TV",
       "History"
     ];
 

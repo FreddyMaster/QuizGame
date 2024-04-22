@@ -31,17 +31,19 @@
     <div class="text-center">
         <h1 class="text-black text-6xl">Game Over!</h1>
         <h3 class="text-lg text-black">You got {#if points === $score}<strong class="text-red-600"> {points} </strong>{:else} <span class="text-red-600">{points}</span> {/if} {$score === 1 ? "question" : "questions"} right.</h3>
-        <a href="/play">
-            <button class="btn bg-blue-500 text-white border-4 border-black">Try Again</button>
-            
-        </a>
+        <div class="flex flex-row justify-center align-middle">
+            <a href="/play">
+                <button class="btn bg-primary text-white">Try Again</button>
+            </a>
 
-        <form action="?/submitScore&score={value}&categories={balueArray}" method="post">
-            <button type="submit">Add Score</button>    
-        </form>        
-        <a href="/leaderboard">
-            <button class="btn bg-green-800 text-white border-4 border-black">Veiw Leaderboard</button>
-        </a>
+            <form action="?/submitScore&score={value}&categories={balueArray}" method="post">
+                <button type="submit" class="btn bg-secondary text-white">Add Score</button>    
+            </form> 
+
+            <a href="/leaderboard">
+                <button class="btn bg-neutral text-white">Leaderboard</button>
+            </a>
+    </div>
     </div>
     <style>
         h1 {

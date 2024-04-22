@@ -4,12 +4,22 @@ import { error, fail, redirect } from "@sveltejs/kit"
 import { score, selectedCategories } from "../../lib/stores.js"
 
 export const load = async () => {
-    const leaderboard = await prisma.leaderboard.findMany();
-    if (!leaderboard) {
-        throw error(404, "leaderboard ERR: No leaderboard could load :(")
-    }
-
-    return {
-        leaderboard
+      try {
+        const scores = await prisma.leaderboard.findMany({
+          orderBy: [
+            {
+              score: 'desc',
+            },
+          ]
+      });
+        return {
+          scores
+        };
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+        return {
+          status: 500,
+          error: "Failed to load leaderboard"
+        };
     }
 }

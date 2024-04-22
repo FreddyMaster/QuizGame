@@ -51,13 +51,13 @@
         <h2 class="text-center text-3xl m-5 font-bold text-black">Here are your Categories:</h2>
         <p class="text-center text-large font-bold text-black"> Click a category to keep their questions out of the game.</p>
         <div
-          class="grid justify-items-center grid-cols-5 gap-8 gap-x-1 p-8 rounded-md"
+          class="grid justify-items-center grid-cols-5 gap-y-5 gap-x-1 rounded-md p-2"
         >
           {#each categories as category, index}
             <button
               value={category.category_id}
               on:click={handleCategoryChange}
-              class="flex flex-col justify-center items-center overflow-hidden border-solid border-4 rounded-3xl text-white w-64 h-48 transition-all duration-300 ease-in-out hover:border-white hover:scale-105"
+              class="flex flex-col justify-center items-center overflow-hidden border-solid border-4 rounded-3xl text-white w-56 h-40 transition-all duration-300 ease-in-out hover:border-white hover:scale-105"
               style="border-color: {$selectedCategories.includes(category)
                 ? '#fff'
                 : $colors[

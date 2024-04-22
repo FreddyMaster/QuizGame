@@ -14,7 +14,7 @@ model categories {
 }
 
 model leaderboard {
-  rank       Int       @id @default(autoincrement())
+  leaderboard_id       Int       @id @default(autoincrement())
   username   String    @db.VarChar(255)
   score      Int
   time       DateTime? @db.DateTime(0)
