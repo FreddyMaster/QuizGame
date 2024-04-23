@@ -33,7 +33,6 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><a href="/settings">Settings</a></li>
           <form method="POST" action="/logout">
             <li><button type="submit">Logout</button></li>
           </form>
@@ -61,7 +60,6 @@
             </a>
           </li>
           <li><a href="/admin/questions">Admin</a></li>
-          <li><a href="/settings">Settings</a></li>
           <form method="POST" action="/logout">
             <li><button type="submit">Logout</button></li>
           </form>
