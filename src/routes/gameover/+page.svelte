@@ -1,8 +1,11 @@
 <script>
     // @ts-nocheck
     import "$lib/app.css";
-    import { score } from "$lib/stores.js";
+    import { score, selectedCategories } from "$lib/stores.js";
     import { onMount } from "svelte";
+    
+    import { get } from 'svelte/store';
+    //import { enhance } from '$app/forms'
 
     let points = 0;
 
@@ -13,7 +16,14 @@
       }
     }, 500);
   });
+  const value = get(score);
+  let balue = get(selectedCategories);
+  const balueArray = [].concat(...balue.map(obj => obj.category_id));
+  console.log(value," ", balueArray);
+
 </script>
+
+
 
 <main>
     <!-- Game Interface Section -->
@@ -24,8 +34,12 @@
             <button class="btn bg-blue-500 text-white border-4 border-black">Try Again</button>
             
         </a>
-        <a href="/play">
-            <button class="btn bg-green-800 text-white border-4 border-black">Submit Score?</button>
+
+        <form action="?/submitScore&score={value}&categories={balueArray}" method="post">
+            <button class="btn" type="submit">Add Score</button>    
+        </form>        
+        <a href="/leaderboard">
+            <button class="btn bg-green-800 text-white border-4 border-black">Veiw Leaderboard</button>
         </a>
     </div>
     <style>

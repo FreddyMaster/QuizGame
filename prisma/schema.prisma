@@ -14,12 +14,13 @@ model categories {
 }
 
 model leaderboard {
-  rank     Int       @id @default(autoincrement())
-  username String    @db.VarChar(255)
-  score    Int
-  time     DateTime? @db.Date
-  user_id  Int
-  user     users     @relation(fields: [user_id], references: [user_id])
+  leaderboard_id Int       @id @default(autoincrement())
+  username       String    @db.VarChar(255)
+  score          Int
+  time           DateTime? @db.DateTime(0)
+  categories     String    @db.Text
+  user_id        Int
+  user           users     @relation(fields: [user_id], references: [user_id])
 
   @@index([user_id], map: "user_id")
 }
@@ -39,14 +40,14 @@ model questions {
 }
 
 model users {
-  user_id     Int              @id @default(autoincrement())
-  username    String           @db.VarChar(255) @unique
-  email       String           @unique(map: "email") @db.VarChar(255)
-  password    String           @db.VarChar(255)
-  highscore   Int?             @default(0)
-  userAuthToken String @unique
-  user_type   users_user_type? @default(user)
-  leaderboard leaderboard[]
+  user_id       Int              @id @default(autoincrement())
+  username      String           @unique @db.VarChar(255)
+  email         String           @unique(map: "email") @db.VarChar(255)
+  password      String           @db.VarChar(255)
+  highscore     Int?             @default(0)
+  userAuthToken String           @unique
+  user_type     users_user_type? @default(user)
+  leaderboard   leaderboard[]
 }
 
 enum users_user_type {
