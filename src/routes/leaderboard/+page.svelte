@@ -15,7 +15,7 @@
 </script>
 <main>
     <h1 class="text-5xl text-black text-center p-5">Leaderboard</h1>
-    <div class=" mx-80 p-5 flex flex-col justify-center">
+    <div class=" mx-80 p-5 flex flex-col justify-center bg-accent border-secondary border-4 rounded-lg">
     {#each scores as rank, index }
         {#if index== 0}
         <div class="flex flex-col bg-yellow-200 rounded-full border-4 border-yellow-500 p-2 m-2">

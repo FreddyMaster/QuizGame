@@ -18,7 +18,7 @@
   let questions = data.questions;
   let categories = data.categories;
   console.log($selectedCategories);
-  let time = 999.0;
+  let time = 20.0;
   let questionCount = 1;
   let currentQuestionIndex = 0;
   $score = 0;
@@ -141,7 +141,7 @@
               on:click|preventDefault={() => handleClick(answer)}
             >
               <span
-                class="flex flex-col items-center justify-center w-10 h-10 p-2 rounded-full bg-white text-primary"
+                class="flex flex-col items-center justify-center w-12 h-12 p-2 rounded-full bg-white text-primary"
                 >{`${String.fromCharCode(65 + index)}`}</span
               >
               <p>{answer}</p>
