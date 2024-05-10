@@ -14,13 +14,13 @@ model categories {
 }
 
 model leaderboard {
-  leaderboard_id Int       @id @default(autoincrement())
-  username       String    @db.VarChar(255)
-  score          Int
-  time           DateTime? @db.DateTime(0)
-  categories     String    @db.Text
-  user_id        Int
-  user           users     @relation(fields: [user_id], references: [user_id])
+  leaderboard_id       Int       @id @default(autoincrement())
+  username   String    @db.VarChar(255)
+  score      Int
+  time       DateTime? @db.DateTime(0)
+  categories String    @db.Text
+  user_id    Int
+  user       users     @relation(fields: [user_id], references: [user_id])
 
   @@index([user_id], map: "user_id")
 }

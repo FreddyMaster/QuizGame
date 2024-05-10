@@ -19,10 +19,10 @@
   let categories = data.categories;
   console.log($selectedCategories);
   let time = 20.0;
+  let questionCount = 1;
   let currentQuestionIndex = 0;
   $score = 0;
   let answers = [];
-
   // This interval updates every 100 milliseconds to provide subsecond precision
   onMount(() => {
     setInterval(() => {
@@ -60,6 +60,7 @@
       correct_sound.play();
       score.update((n) => n + 1);
       time = 20;
+      questionCount+=1;
     } else {
       incorrect_sound.play();
       goto("/gameover");
@@ -95,15 +96,16 @@
       class="h-[calc(100vh-16rem)] w-screen flex flex-col justify-center items-center"
     >
       <div class="relative flex justify-center items-center w-full">
-        <div class="absolute bg-primary rounded-full shadow-inner bottom-[-10px] w-3/12">
-          <h3 class="text-xl font-bold m-2 pl-2 text-white">Score: {$score}</h3>
-          <div class="relative flex justify-center items-center">
+        <div class="absolute bg-primary rounded-full shadow-inner bottom-[-10px] w-3/12 flex flex-row justify-evenly ">
+          <h3 class="text-xl font-bold pl-2 text-white m-2 p-3">Score: {$score}</h3>
+          <div class="relative flex justify-center items-center m-2 p-3">
             <h3
               class="absolute text-xl font-bold rounded-full bg-white text-black border-3 border-black h-16 w-16 flex items-center justify-center bottom-0 shadow-inner "
             >
               {time}s
             </h3>
           </div>
+          <h3 class="text-xl font-bold pl-2 text-white m-2 p-3">Question: {questionCount}</h3>
         </div>
       </div>
       <h2
@@ -139,7 +141,7 @@
               on:click|preventDefault={() => handleClick(answer)}
             >
               <span
-                class="flex flex-col items-center justify-center w-10 h-10 p-2 rounded-full bg-white text-primary"
+                class="flex flex-col items-center justify-center w-12 h-12 p-2 rounded-full bg-white text-primary"
                 >{`${String.fromCharCode(65 + index)}`}</span
               >
               <p>{answer}</p>
