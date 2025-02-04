@@ -1,18 +1,5 @@
 
 
-:root {
-     --primary-color: #3b82f6; /* Dark blue for primary elements */
-     --secondary-color: 	#3c57d1; /* Green for secondary elements */
-     --background-color: #d4f5ff; /* Yellow for Background*/
-     --hover-color: #5b98fa; /* Light blue for hover elements */
-     --highlight-color: #FF9900; /* Orange for higlighting*/
-     --text-color: #0f172a; /* Dark text color */
-     --button-text-color: #ecf0f1; /* Light text color */
-     --border-color: #8726c7; /* Border color */
-     --disabled-color: #7f8c8d; /* Gray for disabled elements */
-     --correct-color: #3ce956;
-     --incorrect-color: #f94e4e;
-  }
 
   main {
      font-family: "Inter", sans-serif;

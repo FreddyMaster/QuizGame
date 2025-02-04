@@ -3,6 +3,7 @@
     import "$lib/app.css";
     import { score,selectedCategories } from "$lib/stores.js";
     import { onMount } from "svelte";
+    import  Icon  from "@iconify/svelte";
     
     import { get } from 'svelte/store';
     //import { enhance } from '$app/forms'
@@ -19,7 +20,7 @@
   const value = get(score);
   let balue = get(selectedCategories);
   const balueArray = [].concat(...balue.map(obj => obj.category));
-  console.log(value," ", balueArray);
+console.log(value," ", balueArray);
 
 
 </script>
@@ -27,32 +28,53 @@
 
 
 <main>
-    <!-- Game Interface Section -->
-    <div class="text-center">
-        <h1 class="text-black text-6xl">Game Over!</h1>
-        <h3 class="text-lg text-black">You got {#if points === $score}<strong class="text-red-600"> {points} </strong>{:else} <span class="text-red-600">{points}</span> {/if} {$score === 1 ? "question" : "questions"} right.</h3>
-        <div class="flex flex-row justify-center align-middle">
-            <a href="/play">
-                <button class="btn bg-primary text-white">Try Again</button>
-            </a>
 
-            <form action="?/submitScore&score={value}&categories={balueArray}" method="post">
-                <button type="submit" class="btn bg-secondary text-white">Add Score</button>    
-            </form> 
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-sky-200 to-sky-300 p-4">
+        <div class="card w-full max-w-md bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div
+              class="space-y-6"
+            >
+              <div class="text-center space-y-4">
+                <h1 class="text-4xl md:text-5xl font-bold text-primary">
+                  Game Over!
+                </h1>
+                <div class="relative">
+                  <div
+                    class="text-xl text-neutral"
+                  >
+                    You got <span class="font-bold text-2xl text-primary">{value}</span> right
+                </div>
+                  
 
-            <a href="/leaderboard">
-                <button class="btn bg-neutral text-white">Leaderboard</button>
-            </a>
-    </div>
-    </div>
-    <style>
-        h1 {
-            font-family: "Permanent Marker", cursive;
-            padding-bottom: 75px;
-        }
-        button{
-            font-family: "Permanent Marker", cursive;
+                </div>
+              </div>
+      
+              <div class="flex flex-col gap-4">
+                <a href="/play">
+                <button class="btn btn-primary w-full">
+                  <Icon icon="lucide:rotate-ccw" height="16" width="16" class="mr-2 text-white" />
+                  Try Again
+                </button>
+                </a>
+      
+                <div class="grid grid-cols-2 gap-4">
+                    <form action="?/submitScore&score={value}&categories={balueArray}" method="post">
+                  <button type="submit" class="btn w-full">
+                    Add Score
+                  </button>
+                </form>
+                <a href="/leaderboard">
+                  <button class="btn btn-outline btn-secondary w-full">
+                    <Icon icon="lucide:list-ordered" height="16" width="16" class="mr-2" />
+                    Leaderboard
+                  </button>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        }
-    </style>
 </main>
